@@ -1,0 +1,54 @@
+GET:
+http://localhost:1028/api/cities/
+http://localhost:1028/api/cities/3/
+http://localhost:1028/api/cities/3/pointsofinterest
+http://localhost:1028/api/cities/3/pointsofinterest/5
+
+POST:
+http://localhost:1028/api/cities/3/pointsofinterest
+
+{
+	"id": 7,
+	"name": "test2",
+	"description": "test"
+}
+
+PUT:
+http://localhost:1028/api/cities/2/pointsofinterest/3
+ 
+ {
+    "name": "TestCathedral of Our Lady",
+    "description": "A Gothic style cathedral, conceived by architects Jan and Pieter Appelmans."
+  },
+
+PATCH
+http://localhost:1028/api/cities/2/pointsofinterest/3
+
+[
+	{
+  	"op": "replace",
+  	"path": "/name",
+  	"value": "testUpdated - Central park"
+  }
+]
+
+
+[
+	{
+  	"op": "replace",
+  	"path": "/name",
+  	"value": "3412testUpdated - Central park"
+  },
+  	{
+  	"op": "replace",
+  	"path": "/description",
+  	"value": "34testUpdated - Central park"
+  }
+]
+
+DELETE
+http://localhost:1028/api/cities/2/pointsofinterest/4
+
+
+
+

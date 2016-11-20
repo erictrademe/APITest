@@ -1,0 +1,59 @@
+1. Finish the Interface which contains the methods with Retrofit annotation
+public interface BookService
+{
+    @GET( "books" )
+    Call<List<Book>> getBooks();
+    
+2. Finish the Injector
+
+    public static BookService provideBookService ()
+    
+3. Use  Interface in Presenter
+
+
+    @GET( "books" )
+    Call<List<Book>> getBooks();
+
+    @GET( "books" )
+    Call<List<Book>> search( @Query( "q" ) String query );
+
+    @GET( "books/{id}" )
+    Call<Book> getBook( @Path( "id" ) Long id );
+
+    @POST("books")
+    Call<Book> saveBook(@Body Book book);
+    
+    @POST("books")
+    @FormUrlEncoded
+    Call<Book> saveBook( @Field("title") String title,
+                         @Field("author") String author,
+                         @Field("description") String description);
+                         
+    @PUT("books")
+    Call<Book> updateBook(@Path("id") long id, @Body Book book);
+    
+    @DELETE( "books/{id}")
+    Call<Void> deleteBook (@Path( "id" ) Long id);
+    
+    
+            
+    inal Book book = new Book(title, author, description);
+        
+        service.saveBook(book).enqueue(new Callback<Book>() {
+            @Override
+            public void onResponse(Call<Book> call, Response<Book> response) {
+             
+                if(response.isSuccessful())
+                {
+                    bookView.showBook(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Book> call, Throwable t) {
+                bookView.showErrorMessage();
+
+            }
+        });
+    
+    
